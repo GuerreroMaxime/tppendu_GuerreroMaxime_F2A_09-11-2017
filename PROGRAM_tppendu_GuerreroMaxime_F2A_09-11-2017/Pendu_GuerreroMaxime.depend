@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1510228601 source:c:\users\maxime\desktop\ludus 2eme année\2-c++ (jeudi 11h-13h)\les tp\pendu_guerreromaxime\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

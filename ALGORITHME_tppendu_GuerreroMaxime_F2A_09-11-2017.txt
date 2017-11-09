@@ -1,0 +1,126 @@
+Program: Pendu.
+But:	 Jouer au pendue avec possibiliter de rentrer ces mots de gagner et de perdre.
+Entrer:	 Le mot.
+Sortie:	 Si le joueur a gagner ou perdu
+
+
+Variable
+		Mot: chaine;				//Le mot qu'on devras trouver
+		Lettre: char;				//Voici la lettre que l'on rentre
+		Vie: entier;				//Le nombre de vie que possède le joueur
+		Findegame: entier; 			//Si le joueur perd ou gagne la partie
+		Compteur: entier			//Pour l'affichage du jeu
+		Quitter: entier;			//Si le joueur veux partir du jeux
+		TableMot Mot(10) en lettre;	//Pour stocker les valuers du mots
+		Confirm: entier;			//Permet de taper un mot
+		Mot2: chaine;				//Permet a l'utilisateur de deviner le mot
+		Check: entier;				//Si check est superieur a 1 alors la lettre ce trouve dans le mot sinon on perd une vie
+
+
+Debut
+		Repeter
+
+	//On set la valeur de Vie et de Findegame puis on demande a l'utilisateur de choisir un mot//
+
+			Vie<=10;
+			Findegame<=0;
+			Compteur<=0;
+			Confirm<=0;
+			Ecrire("Entrer votre Mot");
+			Lire("Mot");
+
+			Pour compteur=1 a longueur(mot) faire
+			Debut
+				Ecrire("... ");
+			Finpour
+
+	//On fait la boucle du jeu //
+
+			Repeter
+				Check=0;
+				Compteur=1;
+				Ecrire("Ecrire une lettre");
+				Lire(Lettre);
+
+
+	//Voici la boucle pour savoir si la lettre est dans le mot//
+
+				Pour compteur=1 a longueur(Mot) faire
+				Debut
+					Si (Lettre=Tablemot(compteur)) alors
+					Debut
+						Ecrire(Lettre);
+						Check=1;
+					Finsi
+
+					Sinon
+					Debut
+						Ecrire("...");
+					Finsi
+				Finpour
+
+
+	//Si aucune lettre ce trouve dans le mot alors on perd une vie//
+
+				Si (Check=0) alors
+				Debut
+					Vie=Vie-1;
+				Finsi
+
+
+	//On demande a l'utilisateur de rentrer un mot si il a deviner//
+
+				Ecrire("Avez vous trouver le mot ? (1 pour confirmer)");
+				Lire(Confirm);
+
+				Si (Confirm=1)et (Vie!=0) alors
+				Debut
+					Lire(Mot2)
+
+					Si (Mot2=Mot) alors
+					Debut
+						Findegame<=1;
+					Finsi
+
+					Sinon
+					Debut
+						Vie=Vie-1;
+					Finsi
+				Finsi
+
+
+	//Voici l'affichage de la vie et de verifier si il reste des vie au joueur ou si il a trouver le mot
+
+				Ecrire("Il vous reste "Vie"");
+
+				Si (Vie=0) alors
+					Findegame<=2
+				Finsi
+
+			Jusqu'a (Findegame>0);
+
+
+	//En fonction de la valeur de Findegame on choisi une condition de victoire//
+
+			Si (Findegame=1) alors
+			Debut
+				Ecrire("Vous avez gagner");
+			Finsi;
+
+			Sinon 
+			Debut
+				Ecrire("Vous avez perdu");
+			Finsi;
+
+			Ecrire("Le mot est "Mot"");
+
+
+	//En fonction de la valeur de Quitter on choisi si le joueur veux continuer a jouer//
+
+			Ecrire("Voulez vous recommencer ?");
+			Lire("Quitter")
+
+		Jusqu'a ("Quitter=1");
+
+		Ecrire("Aurevoir");
+Fin.
